@@ -75,6 +75,3 @@ df = pd.DataFrame(lda_top, columns=[f"Topic {i+1}" for i in range(4)])
 
 # Menampilkan DataFrame sebagai tabel
 st.write(df)
-
-if __name__ == "__main__":
-    main()
