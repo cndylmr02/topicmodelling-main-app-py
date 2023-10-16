@@ -40,7 +40,7 @@ st.write("""
 ###### Data tersebut berisi data Abstrak yang telah di proses sehingga data yang dimunculkan berupa data vectorisasi  
 """)
 # Dataset
-dataset = pd.read_excel(r"Data.xlsx")
+dataset = pd.read_excel(r"Data (2).xlsx")
 
 st.write('')
 st.write('## Dataset')
