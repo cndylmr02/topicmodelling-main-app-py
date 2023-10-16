@@ -77,4 +77,4 @@ df = pd.DataFrame(lda_top, columns=[f"Topic {i+1}" for i in range(4)])
 st.write(df)
 
 if __name__ == "__main__":
-    run()
+    main()
