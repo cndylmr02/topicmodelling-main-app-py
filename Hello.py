@@ -1,51 +1,80 @@
-# Copyright (c) Streamlit Inc. (2018-2022) Snowflake Inc. (2022)
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
+import random
 
+import gensim
+import matplotlib.pyplot as plt
+import nltk
+import numpy as np
+import pandas as pd
+import pyLDAvis.gensim_models
+import regex
+import seaborn as sns
 import streamlit as st
-from streamlit.logger import get_logger
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.decomposition import LatentDirichletAllocation
+from gensim import corpora
+from gensim.models import CoherenceModel
+from gensim.utils import simple_preprocess
+from nltk.corpus import stopwords
+import streamlit.components.v1 as components
+from sklearn.decomposition import PCA
+from sklearn.manifold import TSNE
+from umap import UMAP
+from wordcloud import WordCloud
+import matplotlib.colors as mcolors
+import plotly.express as px
 
-LOGGER = get_logger(__name__)
+DEFAULT_HIGHLIGHT_PROBABILITY_MINIMUM = 0.001
+DEFAULT_NUM_TOPICS = 4
 
+nltk.download("stopwords")
 
-def run():
-    st.set_page_config(
-        page_title="Hello",
-        page_icon="👋",
-    )
+#Title
+st.title('Topic Modelling ')
+st.write("""
+#### Dengan LDA Modelling
+""")
+st.write("""
+###### Dataset diambil dari halaman https://pta.trunojoyo.ac.id/c_search/byprod/14
+###### Untuk Tipe Datanya sendiri berupa tipe data Numerik
+###### Data tersebut berisi data Abstrak yang telah di proses sehingga data yang dimunculkan berupa data vectorisasi  
+""")
+# Dataset
+dataset = pd.read_excel(r"Data.xlsx")
 
-    st.write("# Welcome to Streamlit! 👋")
+st.write('')
+st.write('## Dataset')
+st.dataframe(data=dataset)
 
-    st.sidebar.success("Select a demo above.")
+# Teks yang akan dihitung TF-IDF
+texts = ['dataset']
 
-    st.markdown(
-        """
-        Streamlit is an open-source app framework built specifically for
-        Machine Learning and Data Science projects.
-        **👈 Select a demo from the sidebar** to see some examples
-        of what Streamlit can do!
-        ### Want to learn more?
-        - Check out [streamlit.io](https://streamlit.io)
-        - Jump into our [documentation](https://docs.streamlit.io)
-        - Ask a question in our [community
-          forums](https://discuss.streamlit.io)
-        ### See more complex demos
-        - Use a neural net to [analyze the Udacity Self-driving Car Image
-          Dataset](https://github.com/streamlit/demo-self-driving)
-        - Explore a [New York City rideshare dataset](https://github.com/streamlit/demo-uber-nyc-pickups)
-    """
-    )
+# st.write("Hasil Perhitungan TF-IDF:")
+# st.write(tfidf_result.toarray())
+# Fungsi untuk menghitung TF-IDF
+def calculate_tfidf(texts):
+    vectorizer = TfidfVectorizer()
+    tfidf_matrix = vectorizer.fit_transform(texts)
+    return tfidf_matrix
+    
+all_text = " ".join(texts)
 
+# Hitung TF-IDF
+tfidf_result = calculate_tfidf([all_text])
+
+# Tampilkan hasilnya
+st.write("Hasil Perhitungan TF-IDF:")
+st.write(tfidf_result.toarray())
+
+# Tampilan Topic
+lda_model = LatentDirichletAllocation(n_components=4, learning_method='online', random_state=42, max_iter=1)
+lda_top = lda_model.fit_transform(data)
+
+# Membuat DataFrame dari data proporsi topik
+df = pd.DataFrame(lda_top, columns=[f"Topic {i+1}" for i in range(4)])
+
+# Menampilkan DataFrame sebagai tabel
+st.write(df)
 
 if __name__ == "__main__":
     run()
