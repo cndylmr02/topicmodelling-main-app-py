@@ -68,7 +68,7 @@ st.write(tfidf_result.toarray())
 
 # Tampilan Topic
 lda_model = LatentDirichletAllocation(n_components=4, learning_method='online', random_state=42, max_iter=1)
-lda_top = lda_model.fit_transform(data)
+lda_top = lda_model.fit_transform(texts)
 
 # Membuat DataFrame dari data proporsi topik
 df = pd.DataFrame(lda_top, columns=[f"Topic {i+1}" for i in range(4)])
