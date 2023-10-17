@@ -1,44 +1,25 @@
-import streamlit as st
 import pandas as pd
-from sklearn.feature_extraction.text import TfidfVectorizer
-
-# Data contoh
-data = ("Data (2).xlsx")
-
-# Membaca data ke dalam DataFrame
-df = pd.DataFrame(data, columns=['Ada'])
-
-# Membuat objek TF-IDF Vectorizer
-tfidf_vectorizer = TfidfVectorizer()
-
-# Menghitung TF-IDF untuk dokumen
-tfidf_matrix = tfidf_vectorizer.fit_transform(df['Dokumen'])
-
-# Membuat DataFrame untuk representasi TF-IDF
-tfidf_df = pd.DataFrame(data=tfidf_matrix.toarray(), columns=tfidf_vectorizer.get_feature_names_out())
-
-# Menampilkan aplikasi Streamlit
-st.title("Contoh Aplikasi TF-IDF di Streamlit")
-
-# Tampilkan data dokumen asli
-st.subheader("Data Dokumen Asli:")
-st.write(df)
-
-# Tampilkan data TF-IDF
-st.subheader("Hasil Perhitungan TF-IDF:")
-st.write(tfidf_df)
+import streamlit as st
+from sklearn.feature_extraction.text import CountVectorizer
 
 
+def main():
+    st.title("Halaman Term Frequency")
+    st.write("""
+            Term Frequency adalah.... 
+        """)
 
-st.set_page_config(page_title="Topic", page_icon="📹")
-st.markdown("# Topic")
-st.sidebar.header("Topic Modelling")
-st.write(
-    """This app shows how you can use Streamlit to build cool animations.
-It displays an animated fractal based on the the Julia Set. Use the slider
-to tune different parameters."""
-)
+    dt = pd.read_excel("HasilPreposPTA.xlsx")
 
-# animation_demo()
+    # Ekstraksi fitur dan membentuk VSM dalam term frequency
+    dt['cleaning'].fillna('', inplace=True)
+    vectorizer = CountVectorizer()
+    count_matrix = vectorizer.fit_transform(dt['cleaning'])
+    # print(count_matrix)
+    count_array = count_matrix.toarray()
+    df = pd.DataFrame(data=count_array, columns=vectorizer.vocabulary_.keys())
+    st.dataframe(df)
 
-# show_code(animation_demo)
+
+# if __name__ == "__main__":
+#     main()
