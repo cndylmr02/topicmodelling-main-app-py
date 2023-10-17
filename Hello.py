@@ -67,6 +67,7 @@ st.dataframe(data=dataset)
 # st.write(tfidf_result.toarray())
 st.write("# Data Crawling")
 dt = pd.read_excel("PreprocessingData.xlsx")
+st.write(dt)
 
 st.write("# Proporsi Topik Dalam Setiap Dokumen")
 
