@@ -66,6 +66,8 @@ tfidf_result = calculate_tfidf([all_text])
 st.write("Hasil Perhitungan TF-IDF:")
 st.write(tfidf_result.toarray())
 
+st.write("Proporsi Topik Dalam Setiap Dokumen")
+
 # Tampilan Topic
 lda_model = LatentDirichletAllocation(n_components=4, learning_method='online', random_state=42, max_iter=1)
 lda_top = lda_model.fit_transform(dataset)
