@@ -4,7 +4,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 
 
 def main():
-    st.title("Halaman Term Frequency")
+    st.title("Halaman TermFrequency")
     st.write("""
             Term Frequency adalah.... 
         """)
