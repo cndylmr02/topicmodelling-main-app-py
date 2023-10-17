@@ -78,13 +78,15 @@ st.write("# Proporsi Topik Dalam Setiap Dokumen")
 # Tampilan Topic
 lda_model = LatentDirichletAllocation(n_components=4, learning_method='online', random_state=42, max_iter=1)
 lda_top = lda_model.fit_transform(dataset)
-judul = pd.DataFrame({"judul" : (dt)}
+judul = pd.DataFrame({"judul" : ("PreprocessingData.xlsx")}
 
 # Membuat DataFrame dari data proporsi topik
 df = pd.DataFrame(lda_top, judul, columns=[f"Topic {i+1}" for i in range(4)])
 
+tabel = pd.concat([judul, df], axis=1)
+
 # Menampilkan DataFrame sebagai tabel
-st.write(df)
+st.write(tabel)
 #Menampilkan Klasifikasi Dokumen pada Topic
 dominant_topics = df.idxmax(axis=1)
 st.write("# Klasifikasi Dokumen pada Topik")
