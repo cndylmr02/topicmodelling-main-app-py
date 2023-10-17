@@ -46,7 +46,7 @@ st.write('')
 st.write('## Dataset')
 st.dataframe(data=dataset)
 topic = dataset.idxmax(axis=1)
-df['Topik Dominan']= topic
+# df['Topik Dominan']= topic
 st.subheader("Hasil Klasifikasi Kata dalam Dokumen: ")
 st.write(df)
 
