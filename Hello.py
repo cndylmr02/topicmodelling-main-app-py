@@ -76,7 +76,7 @@ lda_model = LatentDirichletAllocation(n_components=4, learning_method='online', 
 lda_top = lda_model.fit_transform(dataset)
 
 # Membuat DataFrame dari data proporsi topik
-df = pd.DataFrame(lda_top, columns=["judul",f"Topic {i+1}" for i in range(4)])
+df = pd.DataFrame(lda_top, columns=[f"Topic {i+1}" for i in range(4)])
 
 # Menampilkan DataFrame sebagai tabel
 st.write(df)
