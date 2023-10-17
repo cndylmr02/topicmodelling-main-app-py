@@ -45,6 +45,10 @@ dataset = pd.read_excel(r"Data (2).xlsx")
 st.write('')
 st.write('## Dataset')
 st.dataframe(data=dataset)
+topic = dataset.idxmax(axis=1)
+df['Topik Dominan']= topic
+st.subheader("Hasil Klasifikasi Kata dalam Dokumen: ")
+st.write(df)
 
 # # Teks yang akan dihitung TF-IDF
 # texts = ['dataset']
