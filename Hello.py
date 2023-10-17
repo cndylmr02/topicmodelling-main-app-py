@@ -48,7 +48,7 @@ st.dataframe(data=dataset)
 topic = dataset.idxmax(axis=1)
 # df['Topik Dominan']= topic
 st.subheader("Hasil Klasifikasi Kata dalam Dokumen: ")
-st.write(df)
+st.write(topic)
 
 # # Teks yang akan dihitung TF-IDF
 # texts = ['dataset']
