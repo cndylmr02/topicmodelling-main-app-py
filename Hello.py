@@ -46,27 +46,27 @@ st.write('')
 st.write('## Dataset')
 st.dataframe(data=dataset)
 
-# Teks yang akan dihitung TF-IDF
-texts = ['dataset']
+# # Teks yang akan dihitung TF-IDF
+# texts = ['dataset']
 
+# # st.write("Hasil Perhitungan TF-IDF:")
+# # st.write(tfidf_result.toarray())
+# # Fungsi untuk menghitung TF-IDF
+# def calculate_tfidf(texts):
+#     vectorizer = TfidfVectorizer()
+#     tfidf_matrix = vectorizer.fit_transform(texts)
+#     return tfidf_matrix
+    
+# all_text = " ".join(texts)
+
+# # Hitung TF-IDF
+# tfidf_result = calculate_tfidf([all_text])
+
+# # Tampilkan hasilnya
 # st.write("Hasil Perhitungan TF-IDF:")
 # st.write(tfidf_result.toarray())
-# Fungsi untuk menghitung TF-IDF
-def calculate_tfidf(texts):
-    vectorizer = TfidfVectorizer()
-    tfidf_matrix = vectorizer.fit_transform(texts)
-    return tfidf_matrix
-    
-all_text = " ".join(texts)
 
-# Hitung TF-IDF
-tfidf_result = calculate_tfidf([all_text])
-
-# Tampilkan hasilnya
-st.write("Hasil Perhitungan TF-IDF:")
-st.write(tfidf_result.toarray())
-
-st.write("Proporsi Topik Dalam Setiap Dokumen")
+st.write("# Proporsi Topik Dalam Setiap Dokumen")
 
 # Tampilan Topic
 lda_model = LatentDirichletAllocation(n_components=4, learning_method='online', random_state=42, max_iter=1)
