@@ -65,6 +65,8 @@ st.dataframe(data=dataset)
 # # Tampilkan hasilnya
 # st.write("Hasil Perhitungan TF-IDF:")
 # st.write(tfidf_result.toarray())
+st.write("# Data Crawling")
+dt = pd.read_excel("PreprocessingData.xlsx")
 
 st.write("# Proporsi Topik Dalam Setiap Dokumen")
 
