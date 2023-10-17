@@ -6,7 +6,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 data = ("Data (2).xlsx")
 
 # Membaca data ke dalam DataFrame
-df = pd.DataFrame(data, columns=['data'])
+df = pd.DataFrame(data, columns=['Ada'])
 
 # Membuat objek TF-IDF Vectorizer
 tfidf_vectorizer = TfidfVectorizer()
