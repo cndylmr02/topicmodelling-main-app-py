@@ -78,7 +78,7 @@ st.write("# Proporsi Topik Dalam Setiap Dokumen")
 # Tampilan Topic
 lda_model = LatentDirichletAllocation(n_components=4, learning_method='online', random_state=42, max_iter=1)
 lda_top = lda_model.fit_transform(dataset)
-judul = pd.DataFrame({"judul" : dt.judul.columns})
+judul = pd.DataFrame({"judul" : dt.judul})
 
 # Membuat DataFrame dari data proporsi topik
 df = pd.DataFrame(lda_top, columns=[f"Topic {i+1}" for i in range(4)])
