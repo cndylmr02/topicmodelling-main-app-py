@@ -88,6 +88,6 @@ tabel = pd.concat([judul, df], axis=0)
 # Menampilkan DataFrame sebagai tabel
 st.write(tabel)
 #Menampilkan Klasifikasi Dokumen pada Topic
-dominant_topics = tabel.iloc[:, 1:].idxmax(axis=1)
+dominant_topics = tabel.idxmax(axis=1)
 st.write("# Klasifikasi Dokumen pada Topik")
 st.write(dominant_topics)
