@@ -45,7 +45,7 @@ dataset = pd.read_excel(r"Data (2).xlsx")
 st.write('')
 st.write('## Dataset')
 st.dataframe(data=dataset)
-topic = dataset.xidmax(axis=0)
+topic = dataset.xidmax(axis=1)
 # df['Topik Dominan']= topic
 st.subheader("Hasil Klasifikasi Kata dalam Dokumen: ")
 st.write(topic)
