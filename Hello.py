@@ -45,7 +45,7 @@ dataset = pd.read_excel(r"Data (2).xlsx")
 st.write('')
 st.write('## Dataset')
 st.dataframe(data=dataset)
-topic = dataset.max(axis=0)
+topic = dataset.xidmax(axis=0)
 # df['Topik Dominan']= topic
 st.subheader("Hasil Klasifikasi Kata dalam Dokumen: ")
 st.write(topic)
@@ -88,6 +88,6 @@ tabel = pd.concat([judul, df], axis=0)
 # Menampilkan DataFrame sebagai tabel
 st.write(tabel)
 #Menampilkan Klasifikasi Dokumen pada Topic
-dominant_topics = tabel.iloc[:, 1:].max(axis=1)
+dominant_topics = tabel.iloc[:, 1:].idxmax(axis=1)
 st.write("# Klasifikasi Dokumen pada Topik")
 st.write(dominant_topics)
